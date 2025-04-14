@@ -1,0 +1,26 @@
+{
+  "name": "lynx-test",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "rspeedy build",
+    "dev": "pnpm build && pnpm --filter lynx-web dev",
+    "preview": "rspeedy preview"
+  },
+  "dependencies": {
+    "@lynx-js/react": "^0.106.4"
+  },
+  "devDependencies": {
+    "@lynx-js/qrcode-rsbuild-plugin": "^0.3.5",
+    "@lynx-js/react-rsbuild-plugin": "^0.9.6",
+    "@lynx-js/rspeedy": "^0.9.1",
+    "@lynx-js/types": "^3.2.1",
+    "@types/react": "^18.3.20",
+    "concurrently": "^9.1.2",
+    "typescript": "~5.8.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af"
+}
