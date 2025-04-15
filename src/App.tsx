@@ -1,45 +1,45 @@
-import { useCallback, useEffect, useState } from '@lynx-js/react'
+import { useRef, useState } from "@lynx-js/react";
+import style from './App.module.css'
+import type { Animation, MainThread, TouchEvent } from "@lynx-js/types";
+import type { Element } from "@lynx-js/types/main-thread";
 
-import './App.less'
-import arrow from './assets/arrow.png'
-import lynxLogo from './assets/lynx-logo.png'
-import reactLynxLogo from './assets/react-logo.png'
+export default function App() {
+  const animationRef = useRef<Animation | null>(null)
+  const [running, setRunning] = useState(false)
 
-export function App() {
-  const [alterLogo, setAlterLogo] = useState(false)
+  const hanle = () => {
+    if (!animationRef.current) {
+      const animationEle = lynx.getElementById("xxx")
+      const xxxAnimation = animationEle.animate([{
+        'transform': "translateX(0px)"
+      }, {
+        'background-color': 'aqua',
+        'transform': "translateX(100px)"
+      }], {
+        duration: 1000,
+        fill: 'forwards'
+      })
+      animationRef.current = xxxAnimation;
+      setRunning(true)
+    }
+  }
 
-  useEffect(() => {
-    console.info('Hello, ReactLynx')
-  }, [])
-
-  const onTap = useCallback(() => {
-    'background only'
-    setAlterLogo(!alterLogo)
-  }, [alterLogo])
-
-  return (
-    <view>
-      <view className='Background' />
-      <view className='App'>
-        <view className='Banner'>
-          <view className='Logo' bindtap={onTap}>
-            {alterLogo
-              ? <image src={reactLynxLogo} className='Logo--react' />
-              : <image src={lynxLogo} className='Logo--lynx' />}
-          </view>
-          <text className='Title'>React</text>
-          <text className='Subtitle'>on Lynx</text>
-        </view>
-        <view className='Content'>
-          <image src={arrow} className='Arrow' />
-          <text className='Description'>Tap the logo and have fun!</text>
-          <text className='Hint'>
-            Edit<text style={{ fontStyle: 'italic' }}>{' src/App.tsx '}</text>
-            to see updates!
-          </text>
-        </view>
-        <view style={{ flex: 1 }}></view>
-      </view>
-    </view>
-  )
+  function handleAnimate() {
+    if (running) {
+      animationRef.current?.pause()
+    } else {
+      animationRef.current?.play()
+    }
+    setRunning(!running)
+  }
+  return <view
+  >
+    <text
+      id="xxx"
+      bindtap={hanle}
+    >XXX</text>
+    <view bindtap={handleAnimate}><text>changeAnimate</text></view>
+  </view>
 }
+
+
