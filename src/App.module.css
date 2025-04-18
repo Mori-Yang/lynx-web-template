@@ -1,5 +1,0 @@
-.moveLeft {
-  transform: translateX(100px);
-  background-color: aqua;
-  transition: transform 3s, background-color 3s;
-}
