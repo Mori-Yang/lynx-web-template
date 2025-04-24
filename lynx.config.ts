@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [
     pluginQRCode({
       schema(url) {
+
         return `${url}?fullscreen=true`
       },
     }),
